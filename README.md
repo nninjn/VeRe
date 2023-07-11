@@ -7,10 +7,10 @@ https://drive.google.com/file/d/1fT3vN85WtI0dUS_jvTxIdPROL78iSlBm/view?usp=shari
 
 ## VeRe: Verification Guided Synthesis for Repairing Deep Neural Networks
 
-![weight_histogram](/images/safety.png)
-![weight_histogram](/images/backdoor.png)
-![weight_histogram](/images/safety_number.png)
-![weight_histogram](/images/backdoor_number.png)
-![weight_histogram](/images/reassure.png)
-![weight_histogram](/images/other_act.png)
-![weight_histogram](/images/combine.png)
+![weight_histogram](/images/safety_no.png)
+![weight_histogram](/images/backdoor_no.png)
+![weight_histogram](/images/safety_number_no.png)
+![weight_histogram](/images/backdoor_number_no.png)
+![weight_histogram](/images/reassure_no.png)
+![weight_histogram](/images/other_no.png)
+![weight_histogram](/images/combine_no.png)
