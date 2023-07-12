@@ -11,7 +11,7 @@ We will clean up the code soon and upload it to the repository.
 
 # Full experimental results
 In this repository, we show the complete results while some of them cannot be accommodated into the main paper due to page limit.
-## Backdooe removing and Correcting safety property violation.
+## Backdoor removing and Correcting safety property violation.
 
 We conduct a set of experiments on two repair tasks: 1) removing backdoor and 2) correcting safety property violation. In removing backdoor, we compare our method with CARE, RM and AI-Lancet. Three baselines are used in correcting safety property violation, i.e. CARE, PRDNN and REASSURE. 
 
