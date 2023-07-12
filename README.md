@@ -19,17 +19,17 @@ Due to REASSURE's special mechanism, we cannot directly add it to our experiment
 ---------------------------------------------------**Results of repairing violation of safety properties**---------------------------------------------------
 ![weight_histogram](/images/safety_no.png) 
 
-------------------------------------------------------------**Results of REASSURE and our method**-----------------------------------------------------------
+----------------------------------------------------------**Results of REASSURE and our method**---------------------------------------------------------
 ![weight_histogram](/images/reassure_no.png)
 
 ----------------------------------------------------------------**Results of backdoor removal**--------------------------------------------------------------
 ![weight_histogram](/images/backdoor_no.png)
 
 ## Repair with limited samples.
------------------------------------------**Results of repairing violation of safety properties with limited samples**----------------------------------------
+----------------------------------------**Results of repairing violation of safety properties with limited samples**--------------------------------------
 ![weight_histogram](/images/safety_number_no.png)
 
------------------------------------------------------**Results of backdoor removal with limited samples**----------------------------------------------------
+---------------------------------------------------**Results of backdoor removal with limited samples**--------------------------------------------------
 ![weight_histogram](/images/backdoor_number_no.png)
 
 
@@ -37,7 +37,7 @@ Due to REASSURE's special mechanism, we cannot directly add it to our experiment
 To investigate how effective our repair method is compared to these methods and how coupled the repair process is with the specific localisation and vice versa, we replaced our repair step with other repair methods. Specifically, we chose particle swarm optimization method from CARE, RM’s fine-tune and optimization with regularization (NeVer 2.0) [2] as three baselines. We denoted the replaced baselines as PSO*, RM*, and Reg* respectively. We ran additional experiments on CIFAR-10 and SVHN datasets, with two number of samples available.
 
 
-------------------------------------------------------------**Combining with other repair methods**----------------------------------------------------------
+-----------------------------------------------------------**Combining with other repair methods**--------------------------------------------------------
 ![weight_histogram](/images/combine_no.png)
 
 ## Other activation functions.
