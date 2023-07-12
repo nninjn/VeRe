@@ -15,7 +15,8 @@ In this repository, we show the complete results while some of them cannot be ac
 
 We conduct a set of experiments on two repair tasks: 1) removing backdoor and 2) correcting safety property violation. In removing backdoor, we compare our method with CARE, RM and AI-Lancet. Three baselines are used in correcting safety property violation, i.e. CARE, PRDNN and REASSURE. Due to REASSURE's special mechanism, we cannot directly add it to our experiments (the time cost of repairing 10,000 samples is unacceptable). Therefore, we designed a set of new experiments for it. Specifically, we apply the limited sample experiment scenarios (i.e., 500 positive samples and different numbers of negative samples) to REASSURE and VeRe respectively for comparison. The experimental results are shown in the table below:
 ![weight_histogram](/images/safety_no.png)
-Results of repairing violation of safety properties.
+
+  **Results of repairing violation of safety properties.**
 ![weight_histogram](/images/reassure_no.png)
 ![weight_histogram](/images/backdoor_no.png)
 
