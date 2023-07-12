@@ -27,8 +27,9 @@ Due to REASSURE's special mechanism, we cannot directly add it to our experiment
 
 ## Repair with limited samples.
 ----------------------------------------**Results of repairing violation of safety properties with limited samples**--------------------------------------
-![weight_histogram](/images/safety_number_no.png#pic_center)
-
+<div align=center>
+![weight_histogram](/images/safety_number_no.png)
+<div>
 ---------------------------------------------------**Results of backdoor removal with limited samples**--------------------------------------------------
 ![weight_histogram](/images/backdoor_number_no.png)
 
