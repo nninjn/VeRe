@@ -11,7 +11,7 @@ We will clean up the code soon and upload it to the repository.
 
 # Full experimental results
 In this repository, we show the complete results while some of them cannot be accommodated into the main paper due to page limit.
-## Backdoor removing and Correcting safety property violation.
+## Backdoor removing and Correcting safety property violation
 
 We conduct a set of experiments on two repair tasks: 1) removing backdoor and 2) correcting safety property violation. In removing backdoor, we compare our method with CARE, RM and AI-Lancet. Three baselines are used in correcting safety property violation, i.e. CARE, PRDNN and REASSURE. 
 
@@ -34,7 +34,7 @@ The experimental results are shown in the table below:
 <img src="https://github.com/nninjn/VeRe/blob/main/images/backdoor_no.png">
 </div>
 
-## Repair with limited samples.
+## Repair with limited samples
 ----------------------------------------**Results of repairing violation of safety properties with limited samples**
 <div align=center>
 <img src="https://github.com/nninjn/VeRe/blob/main/images/safety_number_no.png">
@@ -45,7 +45,7 @@ The experimental results are shown in the table below:
 <img src="https://github.com/nninjn/VeRe/blob/main/images/backdoor_number_no.png">
 </div>
 
-## The coupling between the two steps.
+## The coupling between the two steps
 To investigate how effective our repair method is compared to these methods and how coupled the repair process is with the specific localisation and vice versa, we replaced our repair step with other repair methods. Specifically, we chose particle swarm optimization method from CARE, RM’s fine-tune and optimization with regularization (NeVer 2.0) [2] as three baselines. We denoted the replaced baselines as PSO*, RM*, and Reg* respectively. We ran additional experiments on CIFAR-10 and SVHN datasets, with two number of samples available.
 
 
@@ -54,7 +54,7 @@ To investigate how effective our repair method is compared to these methods and 
 <img src="https://github.com/nninjn/VeRe/blob/main/images/combine_no.png">
 </div>
 
-## Other activation functions.
+## Other activation functions
 To study whether our method generalizes to networks with other activations, we add a set of experiments on backdoor defense, in which the ReLU activation function in each neural network model is replaced with the
 Sigmoid activation function.
 
