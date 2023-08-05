@@ -7,7 +7,7 @@ Due to capacity limitations, all codes, data and models are uploaded anonymously
 
 https://drive.google.com/file/d/1fT3vN85WtI0dUS_jvTxIdPROL78iSlBm/view?usp=sharing
 
-We will clean up the code soon and upload it to the repository.
+We will clean up the code and upload it to the repository after the paper is accepted.
 
 # Full experimental results
 In this repository, we show the complete experimental results.
