@@ -7,7 +7,7 @@ from auto_LiRPA import BoundedModule, BoundedTensor
 from auto_LiRPA.perturbations import PerturbationLpNorm
 from auto_LiRPA.utils import Flatten
 import time
-from dataprocess import Data, PoisonedMnist
+from dataprocess import Data
 from torch.utils.data import DataLoader, Dataset, Subset
 import copy
 import numpy as np
