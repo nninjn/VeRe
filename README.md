@@ -15,6 +15,6 @@ Follow the instructions in <a href="https://github.com/Verified-Intelligence/aut
 
 
 ## Files
-#### **`backdoor`: Experiments for Backdoor Removal**
+**`backdoor`: Experiments for Backdoor Removal**
 
-#### **`safety`: Experiments for Correcting Safety Property**
+**`safety`: Experiments for Correcting Safety Property**
