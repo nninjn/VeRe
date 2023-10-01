@@ -78,9 +78,6 @@ if project == 'repair-VGG-cifar':
 
     poisoned_model = VGG13_dense()
 
-    poi_dir = 'cifar10/Badnetscifar_zq.pt'
-    poi_dir = '/home/ailab/majianan/abLocal/backdoor/checkpoints/vgg13_dense/seed2022/bd/100+20model-best.pt'
-    poi_dir = '/home/ailab/majianan/abLocal/backdoor/checkpoints/vgg13_dense/seed2022/bd/model-best.pt'
     poi_dir = 'cifar10/VGG13 model-best.pt'
     poisoned_model.load_state_dict(torch.load(poi_dir, map_location={'cuda:2': 'cuda:0', 'cuda:5': 'cuda:0'}))
     
