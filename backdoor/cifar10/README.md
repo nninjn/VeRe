@@ -1,5 +1,4 @@
 ## This folder should contain the dataset and the model about CIFAR-10.
 To reproduce our experiments, our models are uploaded in:
-https://drive.google.com/file/d/1fT3vN85WtI0dUS_jvTxIdPROL78iSlBm/view?usp=sharing
 
-https://drive.google.com/drive/folders/1CFLVSPyRVY-raGxMRowCFvEJ3zN5STAM?usp=drive_link
+* Model attacked by BadNets  https://drive.google.com/file/d/14u1enE02cBQuVnTdO-1J8XT2Dm-A2LRn/view?usp=drive_link
