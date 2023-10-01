@@ -95,7 +95,7 @@ if project == 'repair-VGG-cifar':
 
     test_acc = backdoor_reapir.Test_acc(poisoned_model, backdoor_reapir.repair_test_acc_loader, 'Poisoned Model',)
     test_sr = backdoor_reapir.Test_SR(poisoned_model, backdoor_reapir.repair_test_sr_loader, 'Poisoned Model')
-    # 对后门模型在用于修复的数据上进行性能测试
+
     acc = backdoor_reapir.Test_acc(poisoned_model, backdoor_reapir.clean_data_for_repair_loader, 'Clean Model')
     sr, succ = backdoor_reapir.Test_SR(poisoned_model, backdoor_reapir.poi_data_for_repair_loader, 'Poisoned Model')
     logging.info('acc {:.2f}, sr {:.2f}, --- ,Test acc {:.2f}, sr {:.2f}'.format(acc * 100, sr * 100, test_acc * 100, test_sr[0] * 100))
