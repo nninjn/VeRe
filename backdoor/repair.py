@@ -503,10 +503,7 @@ class Repair():
                     all_ori[step * Batch + i] = all_output[-1][i][true_label[i]] - all_output[-1][i][pred_y[i]]
                 # print(ori)
 
-                for neuron in tqdm(range(neuron_num)):
-                    # print('Now analyze neuron:', neuron)
-                    # print('-' * 70, 'one neuron start ', time.time() - t)
-                    
+                for neuron in range(neuron_num):
                     eps = eps_record[neuron]
                     if sum(eps_record[neuron][:, 0]) == sum(eps_record[neuron][:, 1]) and False:
                         all_neuron_eps_effect[neuron, :, :, :] = 0
@@ -549,12 +546,9 @@ class Repair():
                     
                         for i in range(step * Batch, step * Batch + len(image)):
                             all_neuron_effect[neuron][i] = max(0, torch.max(all_neuron_eps_effect[neuron][i]))
-                    # print('-' * 70, 'one neuron end ', time.time() - t)
-                # print('-' * 70, 'all neuron end ', time.time() - t)
                 for i in range(step * Batch,  step * Batch + len(image)):
                     # eff = all_neuron_effect[:, i].detach().clone()
                     max_effect, index = torch.max(all_neuron_effect[:, i], dim=0)
-                    
                     min_effect, index = torch.min(all_neuron_effect[:, i], dim=0)
                     
                     if max_effect - min_effect == 0:
@@ -563,16 +557,12 @@ class Repair():
                         all_neuron_effect[:, i] -= min_effect
                         all_neuron_effect[:, i] /= (max_effect - min_effect)
 
-                            
-                # print('-' * 70, 'normalize end ', time.time() - t)
             for neuron in range(analyze_neuron_num):
                 all_neuron_effect[neuron][self.incor_data_num] = torch.sum(all_neuron_effect[neuron][0: N])
                 all_input_effect[neuron] = all_neuron_effect[neuron][self.incor_data_num]
-            # print(all_input_effect)
             sorted_effect, sorted_index = torch.sort(all_input_effect, descending=True)
             all_neuron_effect = all_neuron_effect.tolist()
             all_neuron_effect.sort(key=lambda x:x[-1], reverse=True)
-            # print('-' * 70, 'sort end ', time.time() - t)
             if check_layer not in self.loc_time:
                 self.loc_time[check_layer] = 0
             self.loc_time[check_layer] += time.time() - t
@@ -594,7 +584,6 @@ class Repair():
         image = []
         true_label = []
         for data in self.incor_data:
-            # cifar数据集返回真实标签
             x, y = data[0], data[1]
             image.append(x)
             true_label.append(y)
@@ -636,8 +625,6 @@ class Repair():
                 if repair_interval[i][j1][0] + ori[i] > 0  and repair_interval[i][j1][1] + ori[i] > 0:
                     f = 'entirely'
                     point_set.append(eps_record[j1])
-
-            
             if f == 'not entirely':
                 
                 for j in range(repair_interval[i].shape[0]):
@@ -659,10 +646,7 @@ class Repair():
         mini_label[self.incor_data_num:, 0] = check_neuron_value[self.incor_data_num:]
         mini_label[self.incor_data_num:, 1] = check_neuron_value[self.incor_data_num:]
         mini_label = mini_label.detach()
-        # print(eps_record)
 
-        # print(self.poisoned_model.state_dict().keys())
-        # print(model.state_dict().keys())
         d = len(self.poisoned_model.state_dict().keys()) - len(model.state_dict().keys())
 
         para_name = list(self.poisoned_model.state_dict().keys())
@@ -671,10 +655,8 @@ class Repair():
         
         post_check_wegiht = self.poisoned_model.state_dict()[para_name[d]]
         post_check_bias = self.poisoned_model.state_dict()[para_name[d + 1]]
-        # print('-', post_check_wegiht.shape, post_check_bias.shape)
         # weight size: check layer * (check layer - 1)
-        # print(pre_check_wegiht, pre_check_wegiht.shape)
-        # print(pre_check_bias, pre_check_bias.shape)
+
         
         if check_layer == 0:
             #mini-nn input
@@ -718,7 +700,6 @@ class Repair():
             # if self.imagenet:
             #     optim = torch.optim.SGD(mini_nn.parameters(), lr=0.01)
             start = time.time()
-            print('-' * 70, 'other time ', start - t)
             # print(mini_label)
 
             for epoch in range(local_epoch):
@@ -756,7 +737,6 @@ class Repair():
             
             post_check_bias += b * post_check_wegiht[:, analyze_neuron]
             post_check_wegiht[:, analyze_neuron] *= w
-            print('-', post_check_wegiht.shape, post_check_bias.shape)
             repaired_para = {}
             for key in self.poisoned_model.state_dict().keys():
                 repaired_para[key] = self.poisoned_model.state_dict()[key]
@@ -771,23 +751,14 @@ class Repair():
                 mini_input = torch.empty([self.cor_data_num + self.incor_data_num, in_weight_num], requires_grad=False).cuda()
                 mini_input = pre_layer_value.detach()
             elif self.incor_data_num * ratio < self.cor_data_num:
-                # print('&' * 20, 'cilp!')
                 mini_input = torch.empty([(ratio + 1) * self.incor_data_num, in_weight_num], requires_grad=False).cuda()
                 mini_input = pre_layer_value[0: (ratio + 1) * self.incor_data_num].detach()
                 mini_label = mini_label[0: (ratio + 1) * self.incor_data_num].detach()
             else:
-                # print('&' * 20, 'cilp!')
                 mini_input = torch.empty([(ratio + 1) * self.incor_data_num, in_weight_num], requires_grad=False).cuda()
                 mini_input = pre_layer_value[0: (ratio + 1) * self.incor_data_num].detach()
                 mini_label = mini_label[0: (ratio + 1) * self.incor_data_num].detach()
-                # mini_input = torch.empty([(1 / ratio + 1) * self.cor_data_num, in_weight_num], requires_grad=False).cuda()
-                # mini_input[(1 / ratio) * self.cor_data_num:] = pre_layer_value[]
-                    
-                # mini_input = pre_layer_value[0: (1 / ratio) * self.cor_data_num].detach()
-                
-                # mini_label = mini_label[0: (ratio + 1) * self.incor_data_num].detach()
-            # print(mini_input.shape, mini_label.shape)
-            # print('mis data, all data', self.incor_data_num, mini_label.shape[0])
+
             mini_data = Data(mini_input, mini_label)
             mini_loader = DataLoader(dataset=mini_data, batch_size=self.BATCH_SIZE, shuffle=True)
 
@@ -845,13 +816,11 @@ class Repair():
             b = mini_nn.state_dict()['2.bias']
             w = mini_nn.state_dict()['2.weight'][0]
             repaired_para[para_name[d - 2]][analyze_neuron] = mini_nn.state_dict()['0.weight']
-            # print('pre weight shape:', repaired_para[para_name[d - 2]][analyze_neuron].shape, mini_nn.state_dict()['0.weight'].shape)
+
             repaired_para[para_name[d - 1]][analyze_neuron] = mini_nn.state_dict()['0.bias']
-            # print('pre bias shape:', repaired_para[para_name[d - 1]][analyze_neuron].shape, mini_nn.state_dict()['0.bias'].shape)
+
             repaired_para[para_name[d + 1]] += b * post_check_wegiht[:, analyze_neuron]
-            # print('post weight shape:', repaired_para[para_name[d + 1]].shape, post_check_wegiht[:, analyze_neuron].shape)
-            # print('post bias shape:', repaired_para[para_name[d]].shape)
-            # repaired_para[para_name[d]] *= w
+
             repaired_para[para_name[d]][:, analyze_neuron] *= w
             
         if check_layer not in self.repair_time:
@@ -925,11 +894,6 @@ class Repair():
                     pre_check_bias = self.poisoned_model.state_dict()[key]
             else:
                 break
-
-        # weight size: check layer * (check layer - 1)
-        # print(pre_check_wegiht, pre_check_wegiht.shape)
-        # print(pre_check_bias, pre_check_bias.shape)
-        # print(model.state_dict().keys())
 
         check_neuron_in_weight = pre_check_wegiht[analyze_neuron]
         print(check_neuron_in_weight.shape, check_neuron_in_weight)
@@ -1090,23 +1054,14 @@ class Repair():
             for i in range(self.incor_data_num):
                 C[i][0][true_label[i]] = 1.0
                 C[i][0][pred_y[i]] = -1.0
-                # print('-'*100, i, true_label[i], pred_y[i])
 
-                            
-            
             ori = torch.zeros((self.incor_data_num)).cuda()
             for i in range(self.incor_data_num):
                 ori[i] = all_output[-1][i][true_label[i]] - all_output[-1][i][pred_y[i]]
-            # print(ori)
 
-            for neuron in tqdm(range(neuron_num)):
-                # print('Now analyze neuron:', neuron)
-                # print('-' * 70, 'one neuron start ', time.time() - t)
-                
+            for neuron in range(neuron_num):   
                 eps = eps_record[neuron]
-                
 
-                
                 if sum(eps_record[neuron][:, 0]) == sum(eps_record[neuron][:, 1]) and False:
                     all_neuron_eps_effect[neuron, :, :, :] = 0
                 else:
@@ -1148,8 +1103,6 @@ class Repair():
                 
                     for i in range(self.incor_data_num):
                         all_neuron_effect[neuron][i] = max(0, torch.max(all_neuron_eps_effect[neuron][i]))
-                # print('-' * 70, 'one neuron end ', time.time() - t)
-            # print('-' * 70, 'all neuron end ', time.time() - t)
             for i in range(self.incor_data_num):
                 # eff = all_neuron_effect[:, i].detach().clone()
 
@@ -1161,18 +1114,13 @@ class Repair():
                     all_neuron_effect[:, i] = 0
                 else:
                     all_neuron_effect[:, i] -= min_effect
-                    all_neuron_effect[:, i] /= (max_effect - min_effect)
-
-                        
-            # print('-' * 70, 'normalize end ', time.time() - t)
+                    all_neuron_effect[:, i] /= (max_effect - min_effect)                
             for neuron in range(neuron_num):
                 all_neuron_effect[neuron][self.incor_data_num] = torch.sum(all_neuron_effect[neuron][0: N])
                 all_input_effect[neuron] = all_neuron_effect[neuron][self.incor_data_num]
-            # print(all_input_effect)
             sorted_effect, sorted_index = torch.sort(all_input_effect, descending=True)
             all_neuron_effect = all_neuron_effect.tolist()
             all_neuron_effect.sort(key=lambda x:x[-1], reverse=True)
-            # print('-' * 70, 'sort end ', time.time() - t)
             if check_layer not in self.loc_time:
                 self.loc_time[check_layer] = 0
             self.loc_time[check_layer] += time.time() - t
@@ -1260,7 +1208,7 @@ class Repair():
             ori = torch.zeros((self.incor_data_num)).cuda()
             for i in range(self.incor_data_num):
                 ori[i] = all_output[-1][i][true_label[i]] - all_output[-1][i][pred_y[i]]
-            for neuron in tqdm(range(neuron_num)):
+            for neuron in range(neuron_num):
                 eps = eps_record[neuron]
 
                 if sum(eps_record[neuron][:, 0]) == sum(eps_record[neuron][:, 1]) and False:
@@ -1313,9 +1261,6 @@ class Repair():
             self.loc_time[check_layer] += time.time() - t
 
         repair_neuron = sorted_index[0]
-        print('repair_neuron', repair_neuron)
-        print(sorted_index)
-        print(sorted_effect)
         self.check_layer = check_layer
         _, _, _ = self.rm_finetune(check_layer=check_layer, analyze_neuron=repair_neuron, iters=self.local_epoch)
         # _, _, _ = self.l2_finetune(check_layer=check_layer, analyze_neuron=repair_neuron, iters=self.local_epoch)
