@@ -14,4 +14,4 @@ Follow the instructions in <a href="https://github.com/Verified-Intelligence/aut
 
 **`safety`: Experiments for Correcting Safety Property**
 
-**`results`: Full Experimental results**
+**`results`: Full Experimental Results**
