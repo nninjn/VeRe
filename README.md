@@ -1,6 +1,6 @@
 # VeRe: Verification Guided Synthesis for Repairing Deep Neural Networks
 
-This repository contains full experimental resultss for the paper  ICSE 2024.
+This repository contains full experimental results for the paper  ICSE 2024.
 
 ## Prerequisites
 We provide a docker image for Linux that has already been initialized with all dependencies, which contains all models and datasets.
