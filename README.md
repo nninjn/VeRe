@@ -15,3 +15,5 @@ Follow the instructions in <a href="https://github.com/Verified-Intelligence/aut
 **`safety`: Experiments for Correcting Safety Property**
 
 **`results`: Full Experimental Results**
+
+[![DOI](https://img.shields.io/badge/10.6084/m9.figshare.24920130)](https://figshare.com/articles/software/Artifact_VeRe_Verification_Guided_Synthesis_for_Repairing_Deep_Neural_Networks/24920130)
