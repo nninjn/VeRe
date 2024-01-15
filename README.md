@@ -7,6 +7,12 @@ This repository contains full experimental results for the paper  ICSE 2024.
 - VeRe requires a GPU for calculating repair significance and fixing problematic neurons, so the Nvidia-docker2 is required for Docker. The tutorial can be found [here](https://cnvrg.io/how-to-setup-docker-and-nvidia-docker-2-0-on-ubuntu-18-04/). Ensure that your Docker version is not higher than 19.03.
 - Ensure that your CUDA version is greater than or equal to 12.0 to successfully run the image.
 
+## Usage
+- The docker image can also be obtained in Docker Hub, you can use the following command to pull our image `sudo docker pull mjnn/vere:1.0`.
+- If you download an image from Figshare, you can use the following command to load the image `sudo docker load -i vere.tar`.
+- After obtaining the image, the first step is to import the Docker image from the tarball and create a corresponding container to run VeRe `sudo docker run --runtime=nvidia -it --name Artifact-vere mjnn/vere:1.0`.
+- Please read the `README_Artifact.pdf` for details.
+
 ## Files
 **`backdoor`: Experiments for Backdoor Removal**
 
