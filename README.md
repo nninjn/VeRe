@@ -1,6 +1,6 @@
 # VeRe: Verification Guided Synthesis for Repairing Deep Neural Networks
 
-This repository contains full experimental results for the paper  ICSE 2024.
+This repository contains full experimental results for the paper "VeRe: Verification Guided Synthesis for Repairing Deep Neural Networks" in ICSE 2024.
 
 ## Prerequisites
 - We provide a docker image for Linux that has already been initialized with all dependencies, which contains all models and datasets. Our image can be obtained from: [Figshare](https://figshare.com/articles/software/Artifact_VeRe_Verification_Guided_Synthesis_for_Repairing_Deep_Neural_Networks/24920130). 
@@ -8,7 +8,7 @@ This repository contains full experimental results for the paper  ICSE 2024.
 - Ensure that your CUDA version is greater than or equal to 12.0 to successfully run the image.
 
 ## Usage
-- The docker image can also be obtained in Docker Hub, you can use the following command to pull our image `sudo docker pull mjnn/vere:1.0`.
+- The Docker image is also available on Docker Hub. To obtain our image, utilize the following command: sudo docker pull mjnn/vere:1.0.
 - If you download an image from Figshare, you can use the following command to load the image `sudo docker load -i vere.tar`.
 - After obtaining the image, the first step is to import the Docker image from the tarball and create a corresponding container to run VeRe `sudo docker run --runtime=nvidia -it --name Artifact-vere mjnn/vere:1.0`.
 - Please read the `README_Artifact.pdf` for details.
