@@ -1,12 +1,10 @@
+# VeRe: Verification Guided Synthesis for Repairing Deep Neural Networks
 
-# ICSE 2024
-
-This repository contains codes, data and models for the conference paper ICSE 2024.
+This repository contains full experimental resultss for the paper  ICSE 2024.
 
 ## Prerequisites
-The code are run successfully using Python 3.9, PyTorch 1.11.0 and numpy 1.25.0.
-
-Follow the instructions in <a href="https://github.com/Verified-Intelligence/auto_LiRPA" target="_blank">CROWN</a>, which will be used by this project. 
+We provide a docker image for Linux that has already been initialized with all dependencies, which contains all models and datasets.
+Our image can be obtained from: [Figshare](https://figshare.com/articles/software/Artifact_VeRe_Verification_Guided_Synthesis_for_Repairing_Deep_Neural_Networks/24920130). 
 
 
 ## Files
@@ -16,4 +14,4 @@ Follow the instructions in <a href="https://github.com/Verified-Intelligence/aut
 
 **`results`: Full Experimental Results**
 
-[![DOI](https://img.shields.io/badge/10.6084/m9.figshare.24920130)](https://figshare.com/articles/software/Artifact_VeRe_Verification_Guided_Synthesis_for_Repairing_Deep_Neural_Networks/24920130)
+
