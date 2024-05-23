@@ -1,1 +1,0 @@
-Model in. nnet format.
